@@ -25,7 +25,7 @@ public class Personne implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-    private String login, motDepPasse, nom, prenom, adresse;
+    private String login, motDepPasse, nom, prenom, adresse, mail;
     private double NoteGlobale;
     
     @Enumerated(EnumType.STRING)
@@ -36,6 +36,14 @@ public class Personne implements Serializable {
     
     @OneToMany(mappedBy = "personne")
     private List<Vehicule> vehicules = new ArrayList<>();
+
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
 
     public List<Vehicule> getVehicules() {
         return vehicules;

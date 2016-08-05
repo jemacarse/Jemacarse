@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,6 +16,16 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class Vehicule implements Serializable {
+    
+    public enum TypeVehicule{
+        
+        BERLINE, COUPE, CAMIONNETTE
+    }
+    
+    public enum Disponibilite {
+        
+        LIBRE, OCCUPE
+    }
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -21,7 +33,13 @@ public class Vehicule implements Serializable {
     private Long id;
     
     private String marque, modele, immatriculation;
-    private double prixParKm;
+    private double prixParKm, nbPlaces;
+    
+    @Enumerated(EnumType.STRING)
+    private TypeVehicule typeVehicule;
+    
+    @Enumerated(EnumType.STRING)
+    private Disponibilite disponibilite;
     
     @ManyToOne
     @JoinColumn(name = "personne_id")
@@ -29,6 +47,38 @@ public class Vehicule implements Serializable {
     
     @OneToMany(mappedBy = "vehicule")
     private List<Course> courses = new ArrayList<>();
+
+    public Disponibilite getDisponibilite() {
+        return disponibilite;
+    }
+
+    public void setDisponibilite(Disponibilite disponibilite) {
+        this.disponibilite = disponibilite;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public double getNbPlaces() {
+        return nbPlaces;
+    }
+
+    public void setNbPlaces(double nbPlaces) {
+        this.nbPlaces = nbPlaces;
+    }
+
+    public TypeVehicule getTypeVehicule() {
+        return typeVehicule;
+    }
+
+    public void setTypeVehicule(TypeVehicule typeVehicule) {
+        this.typeVehicule = typeVehicule;
+    }
 
     public String getMarque() {
         return marque;
@@ -76,14 +126,6 @@ public class Vehicule implements Serializable {
 
     public void setCourses(List<Course> courses) {
         this.courses = courses;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     @Override

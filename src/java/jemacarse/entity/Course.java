@@ -27,7 +27,7 @@ public class Course implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-    private String commentaire;
+    private String commentaireChauffeur, commentaireClient;
     private double id_client, id_chauffeur, montant, distance, note_chauffeur, note_client;
     
     @Temporal(TemporalType.TIMESTAMP)
@@ -44,20 +44,28 @@ public class Course implements Serializable {
     @JoinColumn(name = "vehicule_id")
     private Vehicule vehicule;
 
+    public String getCommentaireChauffeur() {
+        return commentaireChauffeur;
+    }
+
+    public void setCommentaireChauffeur(String commentaireChauffeur) {
+        this.commentaireChauffeur = commentaireChauffeur;
+    }
+
+    public String getCommentaireClient() {
+        return commentaireClient;
+    }
+
+    public void setCommentaireClient(String commentaireClient) {
+        this.commentaireClient = commentaireClient;
+    }
+
     public Vehicule getVehicule() {
         return vehicule;
     }
 
     public void setVehicule(Vehicule vehicule) {
         this.vehicule = vehicule;
-    }
-
-    public String getCommentaire() {
-        return commentaire;
-    }
-
-    public void setCommentaire(String commentaire) {
-        this.commentaire = commentaire;
     }
 
     public double getId_client() {
