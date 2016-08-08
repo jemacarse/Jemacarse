@@ -28,7 +28,7 @@ public class Course implements Serializable {
     private Long id;
     
     private String commentaireChauffeur, commentaireClient;
-    private double id_client, id_chauffeur, montant, distance, note_chauffeur, note_client;
+    private double id_client, id_chauffeur, montant, distance, note_chauffeur, note_client, posDepart_client, posDepart_chauffeur, posArrivee;
     
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateCourse;
@@ -43,6 +43,30 @@ public class Course implements Serializable {
     @ManyToOne
     @JoinColumn(name = "vehicule_id")
     private Vehicule vehicule;
+
+    public double getPosDepart_client() {
+        return posDepart_client;
+    }
+
+    public void setPosDepart_client(double posDepart_client) {
+        this.posDepart_client = posDepart_client;
+    }
+
+    public double getPosDepart_chauffeur() {
+        return posDepart_chauffeur;
+    }
+
+    public void setPosDepart_chauffeur(double posDepart_chauffeur) {
+        this.posDepart_chauffeur = posDepart_chauffeur;
+    }
+
+    public double getPosArrivee() {
+        return posArrivee;
+    }
+
+    public void setPosArrivee(double posArrivee) {
+        this.posArrivee = posArrivee;
+    }
 
     public String getCommentaireChauffeur() {
         return commentaireChauffeur;
