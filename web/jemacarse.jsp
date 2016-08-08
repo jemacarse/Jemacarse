@@ -2,10 +2,11 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=set_to_true_or_false"></script>
+        <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBeiB8cFZ4OfoOXsc9PXNXnSzlrQKf1XKI&signed_in=true&callback=initMap"></script>
         <script type="text/javascript" src="JS/jemacarse.js"></script>
     </head>
-    <body>
-        <div id="map"></div>
+    <body onload = "loadMap()">
+      <div id = "sample" style = "width:1280px; height:800px;"></div>
     </body>
 </html>
+50.606447, 3.152580
