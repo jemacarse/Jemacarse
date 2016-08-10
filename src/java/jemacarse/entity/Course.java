@@ -28,7 +28,7 @@ public class Course implements Serializable {
     private Long id;
     
     private String commentaireChauffeur, commentaireClient;
-    private double id_client, id_chauffeur, montant, distance, note_chauffeur, note_client, posDepart_client, posDepart_chauffeur, posArrivee;
+    private double id_client, id_chauffeur, montant, distance, note_chauffeur, note_client, latPosDepart_client, lgPosDepart_client, latPosDepart_chauffeur, lgPosDepart_chauffeur, latPosArrivee, lgPosArrivee;
     
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateCourse;
@@ -44,29 +44,55 @@ public class Course implements Serializable {
     @JoinColumn(name = "vehicule_id")
     private Vehicule vehicule;
 
-    public double getPosDepart_client() {
-        return posDepart_client;
+    public double getLatPosDepart_client() {
+        return latPosDepart_client;
     }
 
-    public void setPosDepart_client(double posDepart_client) {
-        this.posDepart_client = posDepart_client;
+    public void setLatPosDepart_client(double latPosDepart_client) {
+        this.latPosDepart_client = latPosDepart_client;
     }
 
-    public double getPosDepart_chauffeur() {
-        return posDepart_chauffeur;
+    public double getLgPosDepart_client() {
+        return lgPosDepart_client;
     }
 
-    public void setPosDepart_chauffeur(double posDepart_chauffeur) {
-        this.posDepart_chauffeur = posDepart_chauffeur;
+    public void setLgPosDepart_client(double lgPosDepart_client) {
+        this.lgPosDepart_client = lgPosDepart_client;
     }
 
-    public double getPosArrivee() {
-        return posArrivee;
+    public double getLatPosDepart_chauffeur() {
+        return latPosDepart_chauffeur;
     }
 
-    public void setPosArrivee(double posArrivee) {
-        this.posArrivee = posArrivee;
+    public void setLatPosDepart_chauffeur(double latPosDepart_chauffeur) {
+        this.latPosDepart_chauffeur = latPosDepart_chauffeur;
     }
+
+    public double getLgPosDepart_chauffeur() {
+        return lgPosDepart_chauffeur;
+    }
+
+    public void setLgPosDepart_chauffeur(double lgPosDepart_chauffeur) {
+        this.lgPosDepart_chauffeur = lgPosDepart_chauffeur;
+    }
+
+    public double getLatPosArrivee() {
+        return latPosArrivee;
+    }
+
+    public void setLatPosArrivee(double latPosArrivee) {
+        this.latPosArrivee = latPosArrivee;
+    }
+
+    public double getLgPosArrivee() {
+        return lgPosArrivee;
+    }
+
+    public void setLgPosArrivee(double lgPosArrivee) {
+        this.lgPosArrivee = lgPosArrivee;
+    }
+
+
 
     public String getCommentaireChauffeur() {
         return commentaireChauffeur;
