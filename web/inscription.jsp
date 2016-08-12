@@ -41,7 +41,7 @@
                 <input name="adresse" type="text" width="400">
                 <br />
                 <br />
-                Client :<input name="type" type="radio" value="CLIENT">Chauffeur :<input name="type" type="radio" value="CHAUFFEUR">
+                Client :<input name="role" type="radio" value="CLIENT">Chauffeur :<input name="role" type="radio" value="CHAUFFEUR">
                 <input type="submit" value="Valider">
             </form>
         </div>

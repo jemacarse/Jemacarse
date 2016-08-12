@@ -25,7 +25,7 @@ public class Personne implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-    private String login, motDepPasse, nom, prenom, adresse, mail;
+    private String login, motDePasse, nom, prenom, adresse, mail;
     private double NoteGlobale;
     
     @Enumerated(EnumType.STRING)
@@ -77,12 +77,12 @@ public class Personne implements Serializable {
         this.login = login;
     }
 
-    public String getMotDepPasse() {
-        return motDepPasse;
+    public String getMotDePasse() {
+        return motDePasse;
     }
 
-    public void setMotDepPasse(String motDepPasse) {
-        this.motDepPasse = motDepPasse;
+    public void setMotDePasse(String motDePasse) {
+        this.motDePasse = motDePasse;
     }
 
     public String getNom() {
