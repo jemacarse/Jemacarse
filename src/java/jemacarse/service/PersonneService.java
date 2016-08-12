@@ -11,15 +11,16 @@ public class PersonneService {
         return new PersonneDAO().rechercheParLoginEtMdp(login, motDePasse);
     }
 
-    public void inscription(Personne perso) {
+    public void ajouterPersonne(Personne p) throws RuntimeException{
+        
         PersonneDAO dao = new PersonneDAO();
 
-        List<Personne> listePersoAvecCeLogin = dao.rechercheParLogin(perso.getLogin());
+        List<Personne> listePersoAvecCeLogin = dao.rechercheParLogin(p.getLogin());
 
         if (listePersoAvecCeLogin.size() > 0) {
             throw new RuntimeException("ce login existe deja");
         }
-        dao.enregistrer(perso);
+        dao.ajouterPersonne(p);
 
     }
 

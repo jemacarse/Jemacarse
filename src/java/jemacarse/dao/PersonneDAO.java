@@ -19,10 +19,13 @@ public class PersonneDAO {
         return (Personne) query.getSingleResult();
     }
 
-    public void enregistrer(Personne p) {
+    public void ajouterPersonne(Personne p) throws RuntimeException {
+        
         EntityManager em = Persistence.createEntityManagerFactory("JemacarsePU").createEntityManager();
         em.getTransaction().begin();
+        
         em.persist(p);
+
         em.getTransaction().commit();
     }
 

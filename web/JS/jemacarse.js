@@ -3,18 +3,16 @@ function loadMap() {
     var mapOptions = {
         center: new google.maps.LatLng(50.606447, 3.152580),
         zoom: 15,
+        panControl: false,
+        zoomControl: true,
+        scaleControl: false,
+        mapTypeControl: true,
         streetViewControl: false,
+        overviewMapControl: false,
+        rotateControl: false
     }
 
     var map = new google.maps.Map(document.getElementById("sample"), mapOptions);
-
-    var marker = new google.maps.Marker({
-        position: new google.maps.LatLng(50.606447, 3.152580),
-        map: map,
-        draggable: true,
-        icon: 'PNG/CLIENT_PNG.PNG',
-        title: 'Votre position actuelle'
-    });
 
     var infoWindow = new google.maps.InfoWindow({map: map});
 
@@ -27,15 +25,25 @@ function loadMap() {
             };
 
             infoWindow.setPosition(pos);
-            infoWindow.setContent('Location found.');
+            infoWindow.setContent('Localisation trouvée');
             map.setCenter(pos);
+
+            var marker = new google.maps.Marker({
+                position: pos,
+                map: map,
+                draggable: true,
+                icon: 'PNG/CLIENT_PNG.PNG',
+                title: 'Votre position actuelle'
+            });
         }, function () {
             handleLocationError(true, infoWindow, map.getCenter());
         });
     } else {
-        // Browser doesn't support Geolocation
+
         handleLocationError(false, infoWindow, map.getCenter());
     }
+
+
 }
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {

@@ -41,6 +41,10 @@
                 <input name="adresse" type="text" width="400">
                 <br />
                 <br />
+                <label for="mail">Entrez votre e-mail :</label>
+                <input name="mail" type="text" width="400">
+                <br />
+                <br />
                 Client :<input name="role" type="radio" value="CLIENT">Chauffeur :<input name="role" type="radio" value="CHAUFFEUR">
                 <input type="submit" value="Valider">
             </form>

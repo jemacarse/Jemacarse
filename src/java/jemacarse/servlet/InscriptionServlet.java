@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import jemacarse.entity.Personne;
+import jemacarse.entity.Personne.Role;
 import jemacarse.service.PersonneService;
 
 @WebServlet(name = "InscriptionServlet", urlPatterns = {"/inscription"})
@@ -17,25 +18,32 @@ public class InscriptionServlet extends HttpServlet {
 
         String login = req.getParameter("login");
         String motDePasse = req.getParameter("motDePasse");
-//        String email = req.getParameter("email");
+        String motDePasse2 = req.getParameter("motDePasse2");
+        String email = req.getParameter("email");
         String adresse = req.getParameter("adresse");
         String nom = req.getParameter("nom");
         String prenom = req.getParameter("prenom");
-//        String role = req.getParameter("role"); 
+        String role = req.getParameter("role"); 
 
+        if (!motDePasse.equals(motDePasse2)) {
+
+            resp.sendRedirect("inscription");
+            return;
+        }
+        
         Personne p = new Personne();
         p.setLogin(login);
         p.setMotDePasse(motDePasse);
-//        p.setMail(email);
+        p.setMail(email);
         p.setAdresse(adresse);
         p.setPrenom(prenom);
         p.setNom(nom);
-//        u.setRole(role);
+        p.setRole(Role.valueOf(role));
 
-        new PersonneService().inscription(p);
+        new PersonneService().ajouterPersonne(p);
         
 
-        resp.sendRedirect("index");
+        resp.sendRedirect("connexion");
 
     }
 

@@ -13,12 +13,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-
 @Entity
 public class Course implements Serializable {
-    
-    public enum Etat{
-        
+
+    public enum Etat {
+
         PAYE, IMPAYE
     }
 
@@ -26,20 +25,20 @@ public class Course implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
+
     private String commentaireChauffeur, commentaireClient;
     private double id_client, id_chauffeur, montant, distance, note_chauffeur, note_client, latPosDepart_client, lgPosDepart_client, latPosDepart_chauffeur, lgPosDepart_chauffeur, latPosArrivee, lgPosArrivee;
-    
+
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateCourse;
-    
+
     @Enumerated(EnumType.STRING)
     private Etat etat;
-    
+
     @ManyToOne
     @JoinColumn(name = "personne_id")
     private Personne personne;
-    
+
     @ManyToOne
     @JoinColumn(name = "vehicule_id")
     private Vehicule vehicule;
@@ -91,8 +90,6 @@ public class Course implements Serializable {
     public void setLgPosArrivee(double lgPosArrivee) {
         this.lgPosArrivee = lgPosArrivee;
     }
-
-
 
     public String getCommentaireChauffeur() {
         return commentaireChauffeur;
@@ -222,5 +219,5 @@ public class Course implements Serializable {
     public String toString() {
         return "jemacarse.entity.Course[ id=" + id + " ]";
     }
-    
+
 }
