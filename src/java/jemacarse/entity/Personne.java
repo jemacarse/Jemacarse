@@ -15,7 +15,7 @@ import javax.persistence.OneToMany;
 @Entity
 public class Personne implements Serializable {
     
-    public enum Role{
+    public enum RolePersonne{
         
         CLIENT, CHAUFFEUR
     }
@@ -29,7 +29,7 @@ public class Personne implements Serializable {
     private double NoteGlobale;
     
     @Enumerated(EnumType.STRING)
-    private Role role;
+    private RolePersonne rolePersonne;
     
     @OneToMany(mappedBy = "personne")
     private List<Course> courses = new ArrayList<>();
@@ -53,12 +53,12 @@ public class Personne implements Serializable {
         this.vehicules = vehicules;
     }
 
-    public Role getRole() {
-        return role;
+    public RolePersonne getRolePersonne() {
+        return rolePersonne;
     }
 
-    public void setRole(Role role) {
-        this.role = role;
+    public void setRolePersonne(RolePersonne rolePersonne) {
+        this.rolePersonne = rolePersonne;
     }
 
     public List<Course> getCourses() {

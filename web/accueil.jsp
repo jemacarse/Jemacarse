@@ -4,19 +4,16 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>j' ma carse</title>
         <c:import url="_STYLESHEET.jsp"/>            
     </head>
     <body>
         <div class="titre">
             <c:import url="_TITRE.jsp"/>
         </div>
-        <div class="menu">
-             <c:import url="_CONNEXION.jsp"/>
-        </div>
-        <div class="contenu">
+        <div class="inscription">
             <h1>Inscription</h1>
-            <form method="post">
+            <form method="post" action="inscription">
                 <label for="login">Entrez un login utilisateur :</label>
                 <input name="login" type="text" width="150">
                 <br />
@@ -46,7 +43,21 @@
                 <br />
                 <br />
                 Client :<input name="role" type="radio" value="CLIENT">Chauffeur :<input name="role" type="radio" value="CHAUFFEUR">
-                <input type="submit" value="Valider">
+                <input type="submit" value="OK">
+            </form>
+        </div>
+        <div class="connexion">
+            <h2>Log in</h2>
+            <form method="post" action="connexion">
+                <label for="login">Login :</label>
+                <input name="login" type="text" width="150">
+                <br />
+                <br />
+                <label for="motDePasse">Mot de Passe :</label>
+                <input name="motDePasse" type="password" width="400">
+                <br />
+                <br />
+                <input type="submit" value="OK">
             </form>
         </div>
         <div class="pied">

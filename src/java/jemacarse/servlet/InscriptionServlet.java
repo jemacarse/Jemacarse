@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import jemacarse.entity.Personne;
-import jemacarse.entity.Personne.Role;
+import jemacarse.entity.Personne.RolePersonne;
 import jemacarse.service.PersonneService;
 
 @WebServlet(name = "InscriptionServlet", urlPatterns = {"/inscription"})
@@ -19,7 +19,7 @@ public class InscriptionServlet extends HttpServlet {
         String login = req.getParameter("login");
         String motDePasse = req.getParameter("motDePasse");
         String motDePasse2 = req.getParameter("motDePasse2");
-        String email = req.getParameter("email");
+        String email = req.getParameter("mail");
         String adresse = req.getParameter("adresse");
         String nom = req.getParameter("nom");
         String prenom = req.getParameter("prenom");
@@ -27,7 +27,7 @@ public class InscriptionServlet extends HttpServlet {
 
         if (!motDePasse.equals(motDePasse2)) {
 
-            resp.sendRedirect("inscription");
+            resp.sendRedirect("accueil");
             return;
         }
         
@@ -38,19 +38,19 @@ public class InscriptionServlet extends HttpServlet {
         p.setAdresse(adresse);
         p.setPrenom(prenom);
         p.setNom(nom);
-        p.setRole(Role.valueOf(role));
+        p.setRolePersonne(RolePersonne.valueOf(role));
 
         new PersonneService().ajouterPersonne(p);
         
 
-        resp.sendRedirect("connexion");
+        req.getRequestDispatcher("accueil.jsp").forward(req, resp);
 
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        req.getRequestDispatcher("inscription.jsp").forward(req, resp);
+        req.getRequestDispatcher("accueil.jsp").forward(req, resp);
 
     }
 

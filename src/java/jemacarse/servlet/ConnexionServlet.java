@@ -14,18 +14,30 @@ public class ConnexionServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String pseudo = req.getParameter("login");
-        String motDePasse = req.getParameter("motDePasse");
-        Personne p = new PersonneService().rechercheParLoginEtMdp(pseudo, motDePasse);
+        
+        req.getSession().removeAttribute("persoConnecte");
+        
+        try {    
+            String pseudo = req.getParameter("login");
+            String motDePasse = req.getParameter("motDePasse");
+            
+            Personne p = new PersonneService().rechercheParLoginEtMdp(pseudo, motDePasse);
 
-        req.getSession().setAttribute("persoConnecte", p);
-        resp.sendRedirect("index");
+            req.getSession().setAttribute("persoConnecte", p);
+            
+            resp.sendRedirect("geolocalisation");
+        }
+    
+        catch (RuntimeException e) {
 
+            req.getRequestDispatcher("accueil.jsp").forward(req, resp);
+        }
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("connexion.jsp").forward(req, resp);
+        
+        req.getRequestDispatcher("geolocalisation.jsp").forward(req, resp);
     }
 
 }

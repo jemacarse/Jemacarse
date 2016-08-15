@@ -6,7 +6,9 @@
         <script type="text/javascript" src="JS/jemacarse.js"></script>
     </head>
     <body onload = "loadMap()">
+        <div class="menu">
+            <c:import url="_MENU.jsp"/>
+        </div>
       <div id = "sample" style = "width:1280px; height:800px;"></div>
     </body>
 </html>
-50.606447, 3.152580
