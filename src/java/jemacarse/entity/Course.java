@@ -219,5 +219,4 @@ public class Course implements Serializable {
     public String toString() {
         return "jemacarse.entity.Course[ id=" + id + " ]";
     }
-
 }

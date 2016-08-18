@@ -9,36 +9,44 @@ import jemacarse.entity.Vehicule;
 public class VehiculeDAO {
 
     public void enregistrer(Vehicule v) {
+        
         EntityManager em = Persistence.createEntityManagerFactory("JemacarsePU").createEntityManager();
         em.getTransaction().begin();
+        
         em.persist(v);
+        
         em.getTransaction().commit();
-
     }
 
     public List<Vehicule> listerTous() {
+        
         EntityManager em = Persistence.createEntityManagerFactory("JemacarsePU").createEntityManager();
-        return em.createQuery("SELECT v FROM Vehicule v").getResultList();
+        return em.createQuery("SELECT * FROM Vehicule v").getResultList();
     }
 
     public Vehicule rechercherParId(long id) {
+        
         EntityManager em = Persistence.createEntityManagerFactory("JemacarsePU").createEntityManager();
         return em.find(Vehicule.class, id);
     }
 
-    public void modifierVehicule(Vehicule vehicule) {
+    public void modifierVehicule(Vehicule v) {
+        
         EntityManager em = Persistence.createEntityManagerFactory("JemacarsePU").createEntityManager();
         em.getTransaction().begin();
-        em.merge(vehicule);
+        
+        em.merge(v);
+        
         em.getTransaction().commit();
     }
 
-    public void supprimer(long id) {
+    public void supprimer(Vehicule v) {
+        
         EntityManager em = Persistence.createEntityManagerFactory("JemacarsePU").createEntityManager();
         em.getTransaction().begin();
-        Query q = em.createQuery("delete from Vehicule WHERE id=:idvehicule");
-        q.setParameter("idvehicule", id);
+        
+        em.remove(v);
+        
         em.getTransaction().commit();
     }
-
 }

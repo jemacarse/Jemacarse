@@ -21,16 +21,16 @@ public class PersonneService {
             throw new RuntimeException("ce login existe deja");
         }
         dao.ajouterPersonne(p);
-
     }
 
-    public void modifierProfil(Personne personne) {
+    public void modifierProfil(Personne p) {
+        
         PersonneDAO dao = new PersonneDAO();
-        new PersonneDAO().modifierProfil(personne);
+        new PersonneDAO().modifierProfil(p);
     }
 
-    public void supprimer(Long id) {
-        new PersonneDAO().supprimer(id);
+    public void supprimer(Personne p) {
+        
+        new PersonneDAO().supprimer(p);
     }
-
 }

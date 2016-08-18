@@ -11,7 +11,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-
 @Entity
 public class Personne implements Serializable {
     
@@ -116,7 +115,6 @@ public class Personne implements Serializable {
     public void setNoteGlobale(double NoteGlobale) {
         this.NoteGlobale = NoteGlobale;
     }
-    
 
     public Long getId() {
         return id;
@@ -149,6 +147,5 @@ public class Personne implements Serializable {
     @Override
     public String toString() {
         return "jemacarse.entity.Personne[ id=" + id + " ]";
-    }
-    
+    }   
 }

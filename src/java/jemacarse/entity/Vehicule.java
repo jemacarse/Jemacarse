@@ -13,7 +13,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-
 @Entity
 public class Vehicule implements Serializable {
     
@@ -151,6 +150,5 @@ public class Vehicule implements Serializable {
     @Override
     public String toString() {
         return "jemacarse.entity.Vehicule[ id=" + id + " ]";
-    }
-    
+    }   
 }

@@ -39,5 +39,4 @@ public class ConnexionServlet extends HttpServlet {
         
         req.getRequestDispatcher("geolocalisation.jsp").forward(req, resp);
     }
-
 }

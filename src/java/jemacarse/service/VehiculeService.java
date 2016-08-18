@@ -8,9 +8,9 @@ import jemacarse.entity.Vehicule;
 
 public class VehiculeService {
 
-    public void inscription(Vehicule veh) {
+    public void inscription(Vehicule v) {
         VehiculeDAO dao = new VehiculeDAO();
-        new VehiculeDAO().enregistrer(veh);
+        new VehiculeDAO().enregistrer(v);
     }
 
     public List<Course> lister() {
@@ -21,16 +21,14 @@ public class VehiculeService {
     public Vehicule rechercherParId(long id) {
         VehiculeDAO dao = new VehiculeDAO();
         return dao.rechercherParId(id);
-
     }
 
-    public void modifierVehicule(Vehicule vehicule) {
+    public void modifierVehicule(Vehicule v) {
         VehiculeDAO dao = new VehiculeDAO();
-        new VehiculeDAO().modifierVehicule(vehicule);
+        new VehiculeDAO().modifierVehicule(v);
     }
 
-    public void supprimer(Long id) {
-        new VehiculeDAO().supprimer(id);
+    public void supprimer(Vehicule v) {
+        new VehiculeDAO().supprimer(v);
     }
-
 }

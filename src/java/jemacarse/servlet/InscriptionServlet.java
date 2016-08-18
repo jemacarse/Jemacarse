@@ -42,9 +42,7 @@ public class InscriptionServlet extends HttpServlet {
 
         new PersonneService().ajouterPersonne(p);
         
-
         req.getRequestDispatcher("accueil.jsp").forward(req, resp);
-
     }
 
     @Override
@@ -53,5 +51,4 @@ public class InscriptionServlet extends HttpServlet {
         req.getRequestDispatcher("accueil.jsp").forward(req, resp);
 
     }
-
 }

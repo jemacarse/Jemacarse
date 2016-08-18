@@ -16,7 +16,6 @@ function loadMap() {
 
     var infoWindow = new google.maps.InfoWindow({map: map});
 
-
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (position) {
             var pos = {
@@ -31,8 +30,8 @@ function loadMap() {
             var marker = new google.maps.Marker({
                 position: pos,
                 map: map,
-                draggable: true,
-                icon: 'PNG/CLIENT_PNG.PNG',
+                draggable: false,
+                icon: 'PNG/CLIENT.PNG',
                 title: 'Votre position actuelle'
             });
         }, function () {
@@ -42,8 +41,6 @@ function loadMap() {
 
         handleLocationError(false, infoWindow, map.getCenter());
     }
-
-
 }
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {

@@ -6,25 +6,27 @@ import jemacarse.entity.Course;
 
 public class CourseService {
 
-    public void inscription(Course cou) {
+    public void inscription(Course c) {
+        
         CourseDAO dao = new CourseDAO();
-        new CourseDAO().enregistrer(cou);
+        new CourseDAO().enregistrer(c);
     }
 
     public List<Course> lister() {
+        
         CourseDAO dao = new CourseDAO();
         return dao.listerTous();
     }
 
     public Course rechercherParId(long id) {
+        
         CourseDAO dao = new CourseDAO();
         return dao.rechercherParId(id);
-
     }
 
-    public void modifierCourse(Course course) {
+    public void modifierCourse(Course c) {
+        
         CourseDAO dao = new CourseDAO();
-        new CourseDAO().modifierNote(course);
+        new CourseDAO().modifierNote(c);
     }
-
 }

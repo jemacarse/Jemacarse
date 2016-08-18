@@ -12,11 +12,9 @@ public class PersonneDAO {
 
         EntityManager em = Persistence.createEntityManagerFactory("JemacarsePU").createEntityManager();
 
-        Query query = em.createQuery("select p from Personne p where p.login=:login AND p.motDePasse=:motDePasse");
-        query.setParameter("login", login);
-        query.setParameter("motDePasse", motDePasse);
-
-        return (Personne) query.getSingleResult();
+        return (Personne) em.createQuery("select p from Personne p where p.login=:login AND p.motDePasse=:motDePasse")
+        .setParameter("login", login)
+        .setParameter("motDePasse", motDePasse).getSingleResult();
     }
 
     public void ajouterPersonne(Personne p) throws RuntimeException {
@@ -30,24 +28,28 @@ public class PersonneDAO {
     }
 
     public List<Personne> rechercheParLogin(String login) {
+        
         EntityManager em = Persistence.createEntityManagerFactory("JemacarsePU").createEntityManager();
         return em.createQuery("SELECT p from Personne p WHERE p.login=:login").setParameter("login", login).getResultList();
-
     }
 
-    public void modifierProfil(Personne personne) {
+    public void modifierProfil(Personne p) {
+        
         EntityManager em = Persistence.createEntityManagerFactory("JemacarsePU").createEntityManager();
         em.getTransaction().begin();
-        em.merge(personne);
+        
+        em.merge(p);
+        
         em.getTransaction().commit();
     }
 
-    public void supprimer(long id) {
+    public void supprimer(Personne p) {
+        
         EntityManager em = Persistence.createEntityManagerFactory("JemacarsePU").createEntityManager();
         em.getTransaction().begin();
-        Query q = em.createQuery("delete from Personne WHERE id=:idperso");
-        q.setParameter("idperso", id);
+        
+        em.remove(p);
+        
         em.getTransaction().commit();
     }
-
 }
