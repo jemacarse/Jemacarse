@@ -1,0 +1,47 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 26 août 2016, 12:05:13
+    Author     : admin
+*/
+
+ul#menu_horizontal { 
+    width : 600px; 
+    height : 30px;
+    margin : 2em 0 0 0;
+    padding : 0;
+    background-image: url("PNG/BAR_MENU.png");
+    background-repeat: repeat-x;
+    background-size: auto;
+    list-style-type : none; 
+}
+
+ul#menu_horizontal li {
+    padding : 0 0.5em;  
+    line-height : 30px;
+
+}
+
+ul#menu_horizontal li.bouton_gauche {
+    float : left;
+}
+
+ul#menu_horizontal li.bouton_droite {
+    float : right;
+}
+
+ul#menu_horizontal a {
+    color : black;
+    text-decoration : none;
+    padding : 0 0.5em; 
+    font :  0.8em "Trebuchet MS";
+}
+ul#menu_horizontal a:hover { text-decoration : underline; }
+
+ul#menu_horizontal a img { 
+    border : none;
+    padding :  0 0.3em;
+}
