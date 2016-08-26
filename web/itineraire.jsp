@@ -10,7 +10,7 @@
             <form action="" method="get" name="direction" id="direction">
                 <label>Destination :</label>
                 <input type="text" name="destination" id="destination">
-                <input type="button" value="Calculer l'itinéraire" onclick="javascript:calculate()">
+                <input type="button" value="Calculer l'itinéraire" onclick="javascript:calcul()">
             </form>
         </div>
         <div id="panel"></div>
