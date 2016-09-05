@@ -38,14 +38,13 @@ public class PersonneController {
         if (personneTrouvee != null) {
             session.setAttribute("connecte", personneTrouvee);
             
-            System.out.println("********************************************************************* " + personneTrouvee.getVehicule().getDisponibilite());
             return "redirect:/geolocalisation";
         }
         return "redirect:/accueil";
     }
 
     @RequestMapping(value = "/accueil", method = RequestMethod.GET) //--------------------------------------------------------- Accueil
-    public String accueil(Model m, HttpSession session) {
+    public String accueil(Model m) {
         
         Personne p = new Personne();
 
@@ -61,6 +60,11 @@ public class PersonneController {
 
         if (p.getMotDePasse().equals(p.getMotDePasse2())){
             personneCrudService.save(p);}
+        
+        if (p.getRolePersonne().equals(Personne.RolePersonne.CHAUFFEUR)){
+            
+            return "ajouter_vehicule";
+        }
             
             return "redirect:/accueil";
     }

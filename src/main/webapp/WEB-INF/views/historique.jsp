@@ -54,8 +54,8 @@
                             <td style="text-align: center">${vehicule.marque}</td>
                             <td style="text-align: center">${vehicule.modele}</td>
                             <td style="text-align: center">${vehicule.immatriculation}</td>
-                            <td style="text-align: center"><a href="detailVehicule/${vehicule.idVehicule}">Fiche technique véhicule</a></td>
-                            <td style="text-align: center"><a href="ajouterVehicule">Ajouter un véhicule</a></td>
+                            <td style="text-align: center"><a href="detail_vehicule/${vehicule.idVehicule}">Fiche technique véhicule</a></td>
+                            <td style="text-align: center"><a href="ajouter_vehicule">Ajouter un véhicule</a></td>
                         </c:if></tr>
                     </tbody>
                 </table>

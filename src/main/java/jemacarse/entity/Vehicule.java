@@ -17,7 +17,7 @@ public class Vehicule implements Serializable {
     
     public enum TypeVehicule{
         
-        BERLINE, COUPE, CAMIONNETTE, BREAK
+        BERLINE, COUPE, CAMIONNETTE, BREAK, SUV, CITADINE
     }
     
     public enum Disponibilite {
