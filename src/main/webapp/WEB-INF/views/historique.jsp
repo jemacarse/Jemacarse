@@ -24,10 +24,6 @@
                         <th width="150" style="text-align: center">Adresse</th>
                         <th width="150" style="text-align: center">Mail</th>
                         <th width="150" style="text-align: center">Moyenne note</th>
-                        <th width="150" style="text-align: center">Courses</th>    
-                        <c:if test="${connecte.rolePersonne=='CHAUFFEUR'}">
-                            <th width="150" style="text-align: center">Vehicules</th>
-                        </c:if>
                     </tr>
                 </thead>
                     <tbody>
@@ -38,15 +34,29 @@
                             <td style="text-align: center">${personne.adresse}</td>
                             <td style="text-align: center">${personne.mail}</td>
                             <td style="text-align: center">${personne.noteGlobale}</td>
-                            <c:forEach items="${personne.courses}" var="course">
-                                <td style="text-align: center"><a href="/detailCourse/?idCourse=${course.id}">${course.dateCourse}</a></td>
-                            </c:forEach>
-                            <c:if test="${connecte.rolePersonne=='CHAUFFEUR'}">
-                                <c:forEach items="${personne.vehicules}" var="vehicule">
-                                    <td style="text-align: center"><a href="/detailVehicule/?idVehicule=${vehicule.id}">${vehicule.marque}</a></td>
-                                </c:forEach>
-                            </c:if>
                         </tr>
+                    </tbody>
+                    <thead>
+                        <th width="150" style="text-align: center">Courses</th>
+                        <c:if test="${connecte.rolePersonne=='CHAUFFEUR'}">
+                            <th width="150" style="text-align: center">Marque véhicule</th>
+                            <th width="150" style="text-align: center">Modèle véhicule</th>
+                            <th width="150" style="text-align: center">Immatriculation véhicule</th>
+                        </c:if>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="text-align: center">
+                                <c:forEach items="${courses}" var="course">
+                                    <li><a href="detail_course/${course.idCourse}">${course.dateCourse}</a></li>
+                                </c:forEach></td>
+                        <c:if test="${connecte.rolePersonne=='CHAUFFEUR'}">
+                            <td style="text-align: center">${vehicule.marque}</td>
+                            <td style="text-align: center">${vehicule.modele}</td>
+                            <td style="text-align: center">${vehicule.immatriculation}</td>
+                            <td style="text-align: center"><a href="detailVehicule/${vehicule.idVehicule}">Fiche technique véhicule</a></td>
+                            <td style="text-align: center"><a href="ajouterVehicule">Ajouter un véhicule</a></td>
+                        </c:if></tr>
                     </tbody>
                 </table>
             </div>

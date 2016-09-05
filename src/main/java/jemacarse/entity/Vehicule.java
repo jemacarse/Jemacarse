@@ -3,14 +3,13 @@ package jemacarse.entity;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -18,7 +17,7 @@ public class Vehicule implements Serializable {
     
     public enum TypeVehicule{
         
-        BERLINE, COUPE, CAMIONNETTE
+        BERLINE, COUPE, CAMIONNETTE, BREAK
     }
     
     public enum Disponibilite {
@@ -29,10 +28,11 @@ public class Vehicule implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long idVehicule;
     
     private String marque, modele, immatriculation;
-    private double prixParKm, nbPlaces;
+    private double prixParKm;
+    private Integer nbPlaces;
     
     @Enumerated(EnumType.STRING)
     private TypeVehicule typeVehicule;
@@ -40,12 +40,24 @@ public class Vehicule implements Serializable {
     @Enumerated(EnumType.STRING)
     private Disponibilite disponibilite;
     
-    @ManyToOne
-    @JoinColumn(name = "personne_id")
-    private Personne personne;
-    
     @OneToMany(mappedBy = "vehicule")
     private List<Course> courses = new ArrayList<>();
+
+    public Long getIdVehicule() {
+        return idVehicule;
+    }
+
+    public void setIdVehicule(Long idVehicule) {
+        this.idVehicule = idVehicule;
+    }
+
+    public Integer getNbPlaces() {
+        return nbPlaces;
+    }
+
+    public void setNbPlaces(Integer nbPlaces) {
+        this.nbPlaces = nbPlaces;
+    }
 
     public Disponibilite getDisponibilite() {
         return disponibilite;
@@ -53,22 +65,6 @@ public class Vehicule implements Serializable {
 
     public void setDisponibilite(Disponibilite disponibilite) {
         this.disponibilite = disponibilite;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public double getNbPlaces() {
-        return nbPlaces;
-    }
-
-    public void setNbPlaces(double nbPlaces) {
-        this.nbPlaces = nbPlaces;
     }
 
     public TypeVehicule getTypeVehicule() {
@@ -111,14 +107,6 @@ public class Vehicule implements Serializable {
         this.prixParKm = prixParKm;
     }
 
-    public Personne getPersonne() {
-        return personne;
-    }
-
-    public void setPersonne(Personne personne) {
-        this.personne = personne;
-    }
-
     public List<Course> getCourses() {
         return courses;
     }
@@ -129,26 +117,28 @@ public class Vehicule implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        int hash = 7;
+        hash = 41 * hash + Objects.hashCode(this.idVehicule);
         return hash;
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Vehicule)) {
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
             return false;
         }
-        Vehicule other = (Vehicule) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Vehicule other = (Vehicule) obj;
+        if (!Objects.equals(this.idVehicule, other.idVehicule)) {
             return false;
         }
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "jemacarse.entity.Vehicule[ id=" + id + " ]";
-    }   
+      
 }

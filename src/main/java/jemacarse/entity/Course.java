@@ -1,7 +1,10 @@
 package jemacarse.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -9,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -24,33 +28,41 @@ public class Course implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long idCourse;
 
     private String commentaireChauffeur, commentaireClient;
     private double montant, distance, noteChauffeur, noteClient;
     private double posDepartClient [][], posDepartChauffeur [][], posArrivee [][];
-    private Integer idClient, idChauffeur;
     
+
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateCourse;
 
     @Enumerated(EnumType.STRING)
     private EtatCourse etatCourse;
 
-    @ManyToOne
-    @JoinColumn(name = "personne_id")
-    private Personne personne;
+    @ManyToMany
+    @JoinColumn(name = "personne_course")
+    private List <Personne> personnes = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "vehicule_id")
     private Vehicule vehicule;
 
-    public Long getId() {
-        return id;
+    public List<Personne> getPersonnes() {
+        return personnes;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setPersonnes(List<Personne> personnes) {
+        this.personnes = personnes;
+    }
+    
+    public Long getIdCourse() {
+        return idCourse;
+    }
+
+    public void setIdCourse(Long idCourse) {
+        this.idCourse = idCourse;
     }
 
     public String getCommentaireChauffeur() {
@@ -67,22 +79,6 @@ public class Course implements Serializable {
 
     public void setCommentaireClient(String commentaireClient) {
         this.commentaireClient = commentaireClient;
-    }
-
-    public Integer getIdClient() {
-        return idClient;
-    }
-
-    public void setIdClient(Integer idClient) {
-        this.idClient = idClient;
-    }
-
-    public Integer getIdChauffeur() {
-        return idChauffeur;
-    }
-
-    public void setIdChauffeur(Integer idChauffeur) {
-        this.idChauffeur = idChauffeur;
     }
 
     public double getMontant() {
@@ -157,14 +153,6 @@ public class Course implements Serializable {
         this.etatCourse = etatCourse;
     }
 
-    public Personne getPersonne() {
-        return personne;
-    }
-
-    public void setPersonne(Personne personne) {
-        this.personne = personne;
-    }
-
     public Vehicule getVehicule() {
         return vehicule;
     }
@@ -175,26 +163,30 @@ public class Course implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        int hash = 7;
+        hash = 19 * hash + Objects.hashCode(this.idCourse);
         return hash;
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Course)) {
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
             return false;
         }
-        Course other = (Course) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Course other = (Course) obj;
+        if (!Objects.equals(this.idCourse, other.idCourse)) {
             return false;
         }
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "jemacarse.entity.Course[ id=" + id + " ]";
-    }
+    
+
+    
 }

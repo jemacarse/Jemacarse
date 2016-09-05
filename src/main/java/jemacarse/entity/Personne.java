@@ -3,13 +3,14 @@ package jemacarse.entity;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Personne implements Serializable {
@@ -22,7 +23,7 @@ public class Personne implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long idPersonne;
     
     private String login, motDePasse, motDePasse2, nom, prenom, adresse, mail;
     private double noteGlobale;
@@ -30,11 +31,34 @@ public class Personne implements Serializable {
     @Enumerated(EnumType.STRING)
     private RolePersonne rolePersonne;
     
-    @OneToMany(mappedBy = "personne")
+    @ManyToMany(mappedBy = "personnes")
     private List<Course> courses = new ArrayList<>();
     
-    @OneToMany(mappedBy = "personne")
-    private List<Vehicule> vehicules = new ArrayList<>();
+    private Vehicule vehicule;
+
+    public Long getIdPersonne() {
+        return idPersonne;
+    }
+
+    public void setIdPersonne(Long idPersonne) {
+        this.idPersonne = idPersonne;
+    }
+
+    public List<Course> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(List<Course> courses) {
+        this.courses = courses;
+    }
+
+    public Vehicule getVehicule() {
+        return vehicule;
+    }
+
+    public void setVehicule(Vehicule vehicule) {
+        this.vehicule = vehicule;
+    }
 
     public double getNoteGlobale() {
         return noteGlobale;
@@ -60,28 +84,12 @@ public class Personne implements Serializable {
         this.mail = mail;
     }
 
-    public List<Vehicule> getVehicules() {
-        return vehicules;
-    }
-
-    public void setVehicules(List<Vehicule> vehicules) {
-        this.vehicules = vehicules;
-    }
-
     public RolePersonne getRolePersonne() {
         return rolePersonne;
     }
 
     public void setRolePersonne(RolePersonne rolePersonne) {
         this.rolePersonne = rolePersonne;
-    }
-
-    public List<Course> getCourses() {
-        return courses;
-    }
-
-    public void setCourses(List<Course> courses) {
-        this.courses = courses;
     }
 
     public String getLogin() {
@@ -123,37 +131,30 @@ public class Personne implements Serializable {
     public void setAdresse(String adresse) {
         this.adresse = adresse;
     }
-    
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        int hash = 7;
+        hash = 83 * hash + Objects.hashCode(this.idPersonne);
         return hash;
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Personne)) {
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
             return false;
         }
-        Personne other = (Personne) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Personne other = (Personne) obj;
+        if (!Objects.equals(this.idPersonne, other.idPersonne)) {
             return false;
         }
         return true;
     }
-
-    @Override
-    public String toString() {
-        return "jemacarse.entity.Personne[ id=" + id + " ]";
-    }   
+       
 }

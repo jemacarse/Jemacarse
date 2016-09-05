@@ -22,9 +22,6 @@ public class PersonneController {
     @Autowired
     private PersonneCrudService personneCrudService;
     
-    @Autowired
-    private CourseCrudService courseCrudService;
-
     @RequestMapping(value = "/deconnexion", method = RequestMethod.GET) //------------------------------------------------- Deconnexion
     public String deconnexion(HttpSession session) {
 
@@ -40,6 +37,8 @@ public class PersonneController {
         
         if (personneTrouvee != null) {
             session.setAttribute("connecte", personneTrouvee);
+            
+            System.out.println("********************************************************************* " + personneTrouvee.getVehicule().getDisponibilite());
             return "redirect:/geolocalisation";
         }
         return "redirect:/accueil";
@@ -73,24 +72,22 @@ public class PersonneController {
 
         p = (Personne)session.getAttribute("connecte");
         List<Course> c = p.getCourses();
-        List<Vehicule> v = p.getVehicules();
+        Vehicule v = p.getVehicule();
         
         m.addAttribute("personne", p);
         m.addAttribute("courses", c);
-        m.addAttribute("vehicules", v);
-        
-        
+        m.addAttribute("vehicule", v);
+       
         return "historique";
     }
     
-    @RequestMapping(value = "/detailCourse/{idCourse}", method = RequestMethod.GET)//--------------------------------- Detail d'une course
-    public String detailCourse (Model m, @PathVariable ("idCourse") long id){
-        
-        Course c = new Course();
-        c = courseCrudService.findOne(id);
-        
-        m.addAttribute("course", c);
-        
-        return "detailCourse";
-    }
+    @RequestMapping(value="/test/{dispo}", method = RequestMethod.GET)
+    public String listChauffeurDispo (Model m, @PathVariable ("dispo") Vehicule.Disponibilite dispo){
+
+	List <Personne> chauffeurDISPO = personneCrudService.findAllByVehiculeDisponibilite(dispo);
+                
+        m.addAttribute("personne", chauffeurDISPO);
+                
+        return "test";
+        }
 }
