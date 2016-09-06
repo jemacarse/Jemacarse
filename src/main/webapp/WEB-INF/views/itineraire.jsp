@@ -29,17 +29,14 @@
         <div class="contenu">
             <div id="container">
                 <div id="destinationForm">
-                    <form action="" method="get" name="direction" id="direction">
-                        <!-- <label>Point de départ :</label>
-                        <input type="text" name="origin" id="origin"> -->
-                        <label>Destination :</label>
-                        <input type="text" name="destination" id="destination">
+                    <form:form modelAttribute="course" name="direction" id="direction">
+                        Destination : <input type="text" name="destination" id="destination">
+                        Distance : <form:input path="distance" type="text" name="distance_trajet" id="distance_trajet"></form:input>
+                        Durée : <input type="text" name="duree_trajet" id="duree_trajet">
+                        Adresse depart : <form:input path="adresseDepartClient" type="text" name="adresseDepart" id="adresseDepart"></form:input>
+                        Adresse Arrivée : <form:input path="adresseArrivee" type="text" name="adresseArrivee" id="adresseArrivee"></form:input>
                         <input type="button" value="Calculer l'itinéraire" onclick="javascript:calculate()">
-                    </form>
-                    <label>Distance :</label>
-                    <input type="text" name="distance_trajet" id="distance_trajet">
-                    <label>Durée :</label>
-                    <input type="text" name="duree_trajet" id="duree_trajet">
+                    </form:form>
                 </div>
                 <div id="map" style = "width:100%; height:900px;"></div>
                 <p>Veuillez patienter pendant le chargement de la carte...</p>

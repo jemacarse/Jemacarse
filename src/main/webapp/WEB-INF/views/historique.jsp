@@ -41,7 +41,6 @@
                         <c:if test="${connecte.rolePersonne=='CHAUFFEUR'}">
                             <th width="150" style="text-align: center">Marque véhicule</th>
                             <th width="150" style="text-align: center">Modèle véhicule</th>
-                            <th width="150" style="text-align: center">Immatriculation véhicule</th>
                         </c:if>
                     </thead>
                     <tbody>
@@ -50,13 +49,12 @@
                                 <c:forEach items="${courses}" var="course">
                                     <li><a href="detail_course/${course.idCourse}">${course.dateCourse}</a></li>
                                 </c:forEach></td>
-                        <c:if test="${connecte.rolePersonne=='CHAUFFEUR'}">
-                            <td style="text-align: center">${vehicule.marque}</td>
-                            <td style="text-align: center">${vehicule.modele}</td>
-                            <td style="text-align: center">${vehicule.immatriculation}</td>
-                            <td style="text-align: center"><a href="detail_vehicule/${vehicule.idVehicule}">Fiche technique véhicule</a></td>
-                            <td style="text-align: center"><a href="ajouter_vehicule">Ajouter un véhicule</a></td>
-                        </c:if></tr>
+                            <c:if test="${connecte.rolePersonne=='CHAUFFEUR'}">
+                                <td style="text-align: center">${personne.vehicule.marque}</td>
+                                <td style="text-align: center">${personne.vehicule.modele}</td>
+                                <td style="text-align: center"><a href="detail_vehicule/${personne.vehicule.idVehicule}">Fiche technique véhicule</a></td>
+                            </c:if>
+                        </tr>
                     </tbody>
                 </table>
             </div>

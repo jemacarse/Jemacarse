@@ -36,6 +36,14 @@ public class Personne implements Serializable {
     
     private Vehicule vehicule;
 
+    public Vehicule getVehicule() {
+        return vehicule;
+    }
+
+    public void setVehicule(Vehicule vehicule) {
+        this.vehicule = vehicule;
+    }
+
     public Long getIdPersonne() {
         return idPersonne;
     }
@@ -50,14 +58,6 @@ public class Personne implements Serializable {
 
     public void setCourses(List<Course> courses) {
         this.courses = courses;
-    }
-
-    public Vehicule getVehicule() {
-        return vehicule;
-    }
-
-    public void setVehicule(Vehicule vehicule) {
-        this.vehicule = vehicule;
     }
 
     public double getNoteGlobale() {

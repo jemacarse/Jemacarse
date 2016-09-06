@@ -30,10 +30,8 @@ public class Course implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idCourse;
 
-    private String commentaireChauffeur, commentaireClient;
+    private String commentaireChauffeur, commentaireClient, adresseDepartClient, adresseDepartChauffeur, adresseArrivee;
     private double montant, distance, noteChauffeur, noteClient;
-    private double posDepartClient [][], posDepartChauffeur [][], posArrivee [][];
-    
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateCourse;
@@ -48,6 +46,30 @@ public class Course implements Serializable {
     @ManyToOne
     @JoinColumn(name = "vehicule_id")
     private Vehicule vehicule;
+
+    public String getAdresseDepartClient() {
+        return adresseDepartClient;
+    }
+
+    public void setAdresseDepartClient(String adresseDepartClient) {
+        this.adresseDepartClient = adresseDepartClient;
+    }
+
+    public String getAdresseDepartChauffeur() {
+        return adresseDepartChauffeur;
+    }
+
+    public void setAdresseDepartChauffeur(String adresseDepartChauffeur) {
+        this.adresseDepartChauffeur = adresseDepartChauffeur;
+    }
+
+    public String getAdresseArrivee() {
+        return adresseArrivee;
+    }
+
+    public void setAdresseArrivee(String adresseArrivee) {
+        this.adresseArrivee = adresseArrivee;
+    }
 
     public List<Personne> getPersonnes() {
         return personnes;
@@ -111,30 +133,6 @@ public class Course implements Serializable {
 
     public void setNoteClient(double noteClient) {
         this.noteClient = noteClient;
-    }
-
-    public double[][] getPosDepartClient() {
-        return posDepartClient;
-    }
-
-    public void setPosDepartClient(double[][] posDepartClient) {
-        this.posDepartClient = posDepartClient;
-    }
-
-    public double[][] getPosDepartChauffeur() {
-        return posDepartChauffeur;
-    }
-
-    public void setPosDepartChauffeur(double[][] posDepartChauffeur) {
-        this.posDepartChauffeur = posDepartChauffeur;
-    }
-
-    public double[][] getPosArrivee() {
-        return posArrivee;
-    }
-
-    public void setPosArrivee(double[][] posArrivee) {
-        this.posArrivee = posArrivee;
     }
 
     public Date getDateCourse() {

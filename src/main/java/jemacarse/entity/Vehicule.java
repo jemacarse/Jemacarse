@@ -42,7 +42,7 @@ public class Vehicule implements Serializable {
     
     @OneToMany(mappedBy = "vehicule")
     private List<Course> courses = new ArrayList<>();
-
+    
     public Long getIdVehicule() {
         return idVehicule;
     }

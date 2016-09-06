@@ -15,12 +15,4 @@ public class MapController {
         
         return "geolocalisation";
     }
-    
-    @RequestMapping(value = "/itineraire", method = RequestMethod.GET)
-    public String definirItineraire (Model m){
-        
-        return "itineraire";
-    }
-    
-    
 }

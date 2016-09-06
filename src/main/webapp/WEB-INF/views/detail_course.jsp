@@ -14,26 +14,26 @@
         <div class="menu">
             <c:import url="_MENU.jsp"/>
         </div>
-        <div class="contenu">
-            <table>
-                <thead>
-                    <tr>
-                        <th width="150" style="text-align: center">Date</th>
-                        <c:if test="${connecte.rolePersonne=='CLIENT'}">
-                            <th width="150" style="text-align: center">Chauffeur</th>
-                        </c:if>
-                        <c:if test="${connecte.rolePersonne=='CHAUFFEUR'}">
-                            <th width="150" style="text-align: center">Clients</th>
-                        </c:if>
-                        <th width="150" style="text-align: center">Commentaire reçu</th>
-                        <th width="150" style="text-align: center">Commentaire donné</th>
-                        <th width="150" style="text-align: center">Note reçu</th>
-                        <th width="150" style="text-align: center">Note donné</th>    
-                        <th width="150" style="text-align: center">Montant</th>
-                        <th width="150" style="text-align: center">Distance</th>
-                        <th width="150" style="text-align: center">Statut de la course</th>
-                    </tr>
-                </thead>
+            <div class="contenu">
+                <table>
+                    <thead>
+                        <tr>
+                            <th width="150" style="text-align: center">Date</th>
+                            <c:if test="${connecte.rolePersonne=='CLIENT'}">
+                                <th width="150" style="text-align: center">Chauffeur</th>
+                            </c:if>
+                            <c:if test="${connecte.rolePersonne=='CHAUFFEUR'}">
+                                <th width="150" style="text-align: center">Clients</th>
+                            </c:if>
+                            <th width="150" style="text-align: center">Commentaire reçu</th>
+                            <th width="150" style="text-align: center">Commentaire donné</th>
+                            <th width="150" style="text-align: center">Note reçu</th>
+                            <th width="150" style="text-align: center">Note donné</th>    
+                            <th width="150" style="text-align: center">Montant</th>
+                            <th width="150" style="text-align: center">Distance</th>
+                            <th width="150" style="text-align: center">Statut de la course</th>
+                        </tr>
+                    </thead>
                     <tbody>
                         <tr>
                             <td style="text-align: center">${course.dateCourse}</td>

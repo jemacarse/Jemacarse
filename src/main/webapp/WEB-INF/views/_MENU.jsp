@@ -9,7 +9,6 @@
         <c:when test="${connecte.rolePersonne == 'CHAUFFEUR'}">
             <label>Jemacarse Vite fait, bien fait !!</label>
             <li><a href="historique"><img src="PNG/HISTORIQUE.PNG" width="45" alt=""/></a></li>
-            <li><a href="itineraire"><img src="PNG/LOGO.png" width="70" alt=""/></a></li>
             <li><a href="deconnexion"><img src="PNG/DECONNEXION.png" width="35" alt=""/></a></li>
             <c:if test="${connecte.vehicule.disponibilite == 'LIBRE'}">
                 <li><a href="dispo"><img src="PNG/DISPONIBLE.PNG" width="35" alt=""/></a></li>

@@ -148,7 +148,7 @@ calculate = function () {
             if (status == google.maps.DirectionsStatus.OK) {
                 direction.setDirections(response); // Trace l'itinéraire sur la carte et les différentes étapes du parcours
                 alert("Réponse Ok de google");
-                alert(calcDistance(origin, origin));
+                //alert(calcDistance(origin, origin));
                 var route = response.routes[0];
             //  alert(route.legs[1].duration.text);
             var summaryPanel = document.getElementById('directions_panel');
@@ -166,14 +166,28 @@ calculate = function () {
             //alert(route.legs[i].duration.t + "###" + route.legs[i].distance);
             distance_totale = distance_totale + route.legs[i].distance.value;
             duree_totale = duree_totale + route.legs[i].duration.value;
+            document.getElementById('adresseDepart').value = route.legs[i].start_address;
+            document.getElementById('adresseArrivee').value = route.legs[i].end_address;
+            
+            $.ajax({
+                url : 'itineraire',
+                type : 'POST', 
+                data : 'adresseDepart=' + route.legs[i].start_address + 'adresseArrivee=' + route.legs[i].end_address,
+                dataType : 'json',
+                success : function(code_html, statut){ 
+                 },
+                error : function(resultat, statut, erreur){
+                }
+            });
+            
             }
             //alert("distance totale =" + distance_totale);
             //alert("duree totale =" + duree_totale);
             document.getElementById('distance_trajet').value = (Math.floor(distance_totale / 1000)) + "," + (distance_totale % 1000) + " km";
             document.getElementById('duree_trajet').value = (Math.floor(duree_totale / 60)) + " m " + (duree_totale % 60) + " s";
+            
+            
         }});
-
-    
 }};
 
 //initialize();

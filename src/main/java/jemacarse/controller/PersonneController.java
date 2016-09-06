@@ -6,7 +6,6 @@ import jemacarse.entity.Course;
 import jemacarse.entity.Personne;
 import jemacarse.entity.Personne.RolePersonne;
 import jemacarse.entity.Vehicule;
-import jemacarse.service.CourseCrudService;
 import jemacarse.service.PersonneCrudService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,9 +36,8 @@ public class PersonneController {
         
         if (personneTrouvee != null) {
             session.setAttribute("connecte", personneTrouvee);
-            
-            return "redirect:/geolocalisation";
-        }
+            return "redirect:/geolocalisation";}
+        
         return "redirect:/accueil";
     }
 
@@ -56,42 +54,44 @@ public class PersonneController {
     }
 
     @RequestMapping(value = "/inscription", method = RequestMethod.POST) //------------------------------------------------- Inscription
-    public String inscriptionPost(@ModelAttribute("inscription") Personne p) {
+    public String inscriptionPost(@ModelAttribute("inscription") Personne p, HttpSession session) {
 
         if (p.getMotDePasse().equals(p.getMotDePasse2())){
-            personneCrudService.save(p);}
-        
+            if (p != personneCrudService.findOneByLogin(p.getLogin())){
+            personneCrudService.save(p);}}
+       
         if (p.getRolePersonne().equals(Personne.RolePersonne.CHAUFFEUR)){
+            session.setAttribute("connecte", p);
+            return "redirect:/ajouter_vehicule";}
             
-            return "ajouter_vehicule";
-        }
-            
-            return "redirect:/accueil";
+        return "redirect:/accueil";
     }
 
     @RequestMapping(value = "/historique", method = RequestMethod.GET) //---------------------------------------------------- Historique
     public String afficheHistorique(Model m, HttpSession session) {
         
-        Personne p = new Personne();
-
-        p = (Personne)session.getAttribute("connecte");
+        Personne p = (Personne)session.getAttribute("connecte");
         List<Course> c = p.getCourses();
-        Vehicule v = p.getVehicule();
         
         m.addAttribute("personne", p);
         m.addAttribute("courses", c);
-        m.addAttribute("vehicule", v);
-       
+        
         return "historique";
     }
     
-    @RequestMapping(value="/test/{dispo}", method = RequestMethod.GET)
-    public String listChauffeurDispo (Model m, @PathVariable ("dispo") Vehicule.Disponibilite dispo){
+    @RequestMapping(value="/chercherDispo/{dispo}", method = RequestMethod.GET)
+    public String listChauffeurDispo ( @PathVariable Vehicule.Disponibilite dispo){
 
 	List <Personne> chauffeurDISPO = personneCrudService.findAllByVehiculeDisponibilite(dispo);
                 
-        m.addAttribute("personne", chauffeurDISPO);
+        return "chercherDispo";
+    }
+    
+    @RequestMapping(value="/chercherClient", method = RequestMethod.GET)
+    public String listClient (){
+
+	List <Personne> listClient = personneCrudService.findAllByRolePersonne(Personne.RolePersonne.CLIENT);
                 
-        return "test";
-        }
+        return "chercherClient";
+    }
 }

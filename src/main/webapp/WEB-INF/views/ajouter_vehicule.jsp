@@ -7,7 +7,7 @@
     <head>
         <link href="CSS/csspp.css" rel="stylesheet" type="text/css"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Ajout d'un véhicule</title>
+        <title>Nouveau véhicule</title>
         <c:import url="_STYLESHEET.jsp"/>            
     </head>
     <body>
@@ -15,7 +15,7 @@
             <c:import url="_TITRE.jsp"/>
         </div>
         <div class="contenu">
-            <h1>Ajout d'un véhicule :</h1>
+            <h1>Nouveau véhicule :</h1>
                 <form:form modelAttribute="ajoutVehicule">
                     Entrez la marque du véhicule :<form:input path="marque"></form:input>
                     <br />
