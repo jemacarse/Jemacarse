@@ -31,7 +31,7 @@ public class Vehicule implements Serializable {
     private Long idVehicule;
     
     private String marque, modele, immatriculation;
-    private double prixParKm;
+    private double prixParKm, latChauffeur, longChauffeur;
     private Integer nbPlaces;
     
     @Enumerated(EnumType.STRING)
@@ -42,6 +42,22 @@ public class Vehicule implements Serializable {
     
     @OneToMany(mappedBy = "vehicule")
     private List<Course> courses = new ArrayList<>();
+
+    public double getLatChauffeur() {
+        return latChauffeur;
+    }
+
+    public void setLatChauffeur(double latChauffeur) {
+        this.latChauffeur = latChauffeur;
+    }
+
+    public double getLongChauffeur() {
+        return longChauffeur;
+    }
+
+    public void setLongChauffeur(double longChauffeur) {
+        this.longChauffeur = longChauffeur;
+    }
     
     public Long getIdVehicule() {
         return idVehicule;

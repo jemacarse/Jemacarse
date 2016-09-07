@@ -32,13 +32,18 @@ public class PersonneController {
     @RequestMapping(value = "/connexion", method = RequestMethod.POST) //---------------------------------------------------- Connexion
     public String connexionPOST(@ModelAttribute("connexion") Personne p, HttpSession session) {
 
+        try {
+            
         Personne personneTrouvee = personneCrudService.findOneByLoginAndMotDePasse(p.getLogin(), p.getMotDePasse());
+        session.setAttribute("connecte", personneTrouvee);
         
-        if (personneTrouvee != null) {
-            session.setAttribute("connecte", personneTrouvee);
-            return "redirect:/geolocalisation";}
+            if(personneTrouvee.getRolePersonne().equals(Personne.RolePersonne.CHAUFFEUR)){
+                    return "redirect:/geolocalisation";}
+                
+            return "redirect:/itineraire";}
         
-        return "redirect:/accueil";
+        catch (NullPointerException e){
+            return "redirect:/accueil";}
     }
 
     @RequestMapping(value = "/accueil", method = RequestMethod.GET) //--------------------------------------------------------- Accueil
@@ -56,14 +61,14 @@ public class PersonneController {
     @RequestMapping(value = "/inscription", method = RequestMethod.POST) //------------------------------------------------- Inscription
     public String inscriptionPost(@ModelAttribute("inscription") Personne p, HttpSession session) {
 
-        if (p.getMotDePasse().equals(p.getMotDePasse2())){
-            if (p != personneCrudService.findOneByLogin(p.getLogin())){
-            personneCrudService.save(p);}}
-       
-        if (p.getRolePersonne().equals(Personne.RolePersonne.CHAUFFEUR)){
-            session.setAttribute("connecte", p);
-            return "redirect:/ajouter_vehicule";}
-            
+        Personne temp = personneCrudService.findOneByLogin(p.getLogin());
+        
+        if (p.getMotDePasse().equals(p.getMotDePasse2()) && temp == null){
+            personneCrudService.save(p);
+                if (p.getRolePersonne().equals(Personne.RolePersonne.CHAUFFEUR)){
+                    session.setAttribute("connecte", p);
+                    return "redirect:/ajouter_vehicule";}}
+        
         return "redirect:/accueil";
     }
 

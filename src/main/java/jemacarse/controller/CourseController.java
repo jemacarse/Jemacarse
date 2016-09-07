@@ -1,10 +1,12 @@
 package jemacarse.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 import jemacarse.entity.Course;
 import jemacarse.entity.Personne;
+import jemacarse.entity.Vehicule;
 import jemacarse.service.CourseCrudService;
 import jemacarse.service.PersonneCrudService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -58,15 +61,40 @@ public class CourseController {
     }
     
     @RequestMapping(value = "/itineraire", method = RequestMethod.POST)
-    @ResponseBody
-    public String enregistremantCourse (@ModelAttribute Course c, HttpSession session){
+    public  @ResponseBody String listChauffeurDispo (@RequestBody Course data, HttpSession session, @ModelAttribute ("course") Course c){
         
-        List <Personne> p = new ArrayList<>();
-        p.add((Personne)session.getAttribute("connecte"));
+        List <Personne> chauffeurDISPO = personneCrudService.findAllByVehiculeDisponibilite(Vehicule.Disponibilite.LIBRE);
+        List <Personne> intervenantCourse = new ArrayList<>();
         
-        c.setPersonnes(p);
-        courseCrudService.save(c);
+        for (Personne chauffeur : chauffeurDISPO){
+            intervenantCourse.add(chauffeur);
+        }
+        
+        Personne client = (Personne)session.getAttribute("connecte");
+        intervenantCourse.add(client);
+        c.setPersonnes(intervenantCourse);
+        c.setAdresseDepartClient(data.getAdresseDepartClient());
+        c.setAdresseArrivee(data.getAdresseArrivee());
+        c.setDateCourse(new Date());
+        c.setDistance(data.getDistance());
+        c.setEtatCourse(Course.EtatCourse.IMPAYE);
+        
+        session.setAttribute("course", c);
         
         return "itineraire";
+    }
+    
+    @RequestMapping(value = "/statutCourse", method = RequestMethod.GET)
+    public String modifStatutCourse(HttpSession session) {
+        
+        Course c  = ((Course)session.getAttribute("course"));
+        
+        c.setEtatCourse(Course.EtatCourse.PAYE);
+        session.setAttribute("course", c);
+        courseCrudService.save(c);
+        
+        return "redirect:/itineraire";
+        
+        
     }
 }

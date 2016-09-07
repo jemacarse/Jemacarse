@@ -24,8 +24,10 @@
             <li><a href="historique"><img src="PNG/HISTORIQUE.PNG" width="45" alt=""/></a></li>
             <li><a href="itineraire"><img src="PNG/LOGOCLIENT.png" width="70" alt=""/></a></li>
             <li><a href="deconnexion"><img src="PNG/DECONNEXION.png" width="35" alt=""/></a></li>
+            <c:if test="${course.etatCourse == 'IMPAYE'}">
+                <li><a href="statutCourse"><img src="PNG/PAYER.png" width="35" alt=""/></a></li>
+            </c:if>
             <li>Bonjour ${connecte.login}</li>
-            <li><a href="geolocalisation">Accueil</a></li>
         </c:otherwise>
     </c:choose>
 </ul>

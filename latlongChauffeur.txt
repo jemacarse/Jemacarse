@@ -1,0 +1,7 @@
+pos chauffeur 1 :	50.633961, 3.066814
+
+pos chauffeur 2 :	50.631150, 3.048564
+
+pos chauffeur 3 :	50.630544, 3.056063
+
+pos chauffeur 4	: 	50.635532, 3.049872
