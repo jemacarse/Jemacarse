@@ -99,4 +99,15 @@ public class PersonneController {
                 
         return "chercherClient";
     }
+    
+    @RequestMapping(value = "/detail_chauffeur/{idPersonne}", method = RequestMethod.GET)
+    public String detailVehiculeGET(Model m, @PathVariable long idPersonne) {
+        
+        Personne p = personneCrudService.findOne(idPersonne);
+        
+        m.addAttribute("personne", p);
+        m.addAttribute("vehicule", p.getVehicule());
+        
+        return "detail_chauffeur";
+    }
 }

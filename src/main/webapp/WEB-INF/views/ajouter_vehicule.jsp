@@ -11,8 +11,8 @@
         <c:import url="_STYLESHEET.jsp"/>            
     </head>
     <body>
-        <div class="titre">
-            <c:import url="_TITRE.jsp"/>
+        <div class="menu">
+            <c:import url="_MENU.jsp"/>
         </div>
         <div class="contenu">
             <h1>Nouveau véhicule :</h1>
