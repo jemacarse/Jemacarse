@@ -6,9 +6,9 @@
 <html>
     <head>
         <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBeiB8cFZ4OfoOXsc9PXNXnSzlrQKf1XKI&language=fr"></script>
-        <script type="text/javascript" src="<spring:url value="JS/jquery.min.js"/>"></script>
-        <script type="text/javascript" src="<spring:url value="JS/jquery-ui-1.8.12.custom.min.js"/>"></script>
-        <script type="text/javascript" src="<spring:url value="JS/functions.js"/>"></script>
+        <script type="text/javascript" src="<spring:url value="/JS/jquery.min.js"/>"></script>
+        <script type="text/javascript" src="<spring:url value="/JS/jquery-ui-1.8.12.custom.min.js"/>"></script>
+        <script type="text/javascript" src="<spring:url value="/JS/functions.js"/>"></script>
         <link rel="stylesheet" href="JS/jquery-ui-1.8.12.custom.css" type="text/css" />
         <link href="CSS/cssb.css" rel="stylesheet" type="text/css"/>
         <c:import url="_STYLESHEET.jsp"/> 
@@ -21,7 +21,7 @@
                     <input type="button" value="Calculer l'itinéraire" onclick="javascript:calculate()">
             </div>
         </div>
-        <div class="contenu">
+        <div class="map">
             <div id="container">
                 <div id="map" style = "width:100%; height:900px;"></div>
             </div>

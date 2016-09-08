@@ -15,7 +15,7 @@
         <div class="menu">
             <c:import url="_MENU.jsp"/>
         </div>
-        <div class="contenu">
+        <div class="map">
             <div id = "sample" style = "width:100%; height:900px;"></div>
         </div>
         <div class="pied">

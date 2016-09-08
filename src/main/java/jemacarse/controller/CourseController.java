@@ -88,10 +88,15 @@ public class CourseController {
     public String modifStatutCourse(HttpSession session) {
         
         Course c  = ((Course)session.getAttribute("course"));
+        Personne persOLD = (Personne)session.getAttribute("connecte");
         
         c.setEtatCourse(Course.EtatCourse.PAYE);
-        session.setAttribute("course", c);
         courseCrudService.save(c);
+        
+        Personne persNEW = personneCrudService.findOne(persOLD.getIdPersonne());
+        
+        session.setAttribute("connecte", persNEW);
+        session.removeAttribute("course");
         
         return "redirect:/itineraire";
         

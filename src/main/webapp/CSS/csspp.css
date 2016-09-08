@@ -2,7 +2,12 @@
     color: white;
     font-size: 60px;
     text-align:center;
-    font-family: fantasy;
+    font-family: "Ma Super Fonte", Helvetica, Arial, sans-serif;
+}
+
+@font-face {
+    font-family: "Ma Super Fonte";
+    src: url('handwriting-draft_free-version.ttf');
 }
 
 body {
@@ -14,35 +19,44 @@ body {
 }
 
 .global {
+    width: auto;
     position: relative;
+    display:flex;
+    margin-left: auto;
+    margin-right: auto;
+    width: 800px;
 }
-
+ 
 .inscription {
-    width: 500px;
-    left: 30%;
     position:relative;
     background-color:white;
     opacity: 0.7;
-    padding:20px;
+    padding:10px;
     text-align: center;
-
 }
-
+ 
 .connexion {
-    width: auto;
-    position:absolute;
-    top:86px;
-    left:1080px;
+    width: 300px;
+    left:20px;
+    position:relative;
     background-color:white;
-    opacity: 0.7;
-    padding:20px;
     text-align: center;
+    opacity: 0.7;
+    padding:10px;
 }
+
+.contenu {
+    width:100%;
+    background-color:white;
+    text-align: center;
+    opacity: 0.7;
+}
+
 
 .pied {
-    body {
-        position: relative;
-        bottom: 0px;
-        color: graytext;
-    }
+    position: relative;
+    margin-bottom: 500px;
+    bottom: 0px;
+    color: graytext;
+    text-align: center;
 }

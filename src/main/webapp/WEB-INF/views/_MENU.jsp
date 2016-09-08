@@ -26,7 +26,7 @@
             <li><a href="<spring:url value="/itineraire"/>"><img src="<spring:url value="/PNG/LOGOCLIENT.png"/>" width="70" alt=""/></a></li>
             <li><a href="<spring:url value="/deconnexion"/>"><img src="<spring:url value="/PNG/DECONNEXION.png"/>" width="35" alt=""/></a></li>
             <c:if test="${course.etatCourse == 'IMPAYE'}">
-                <li><a href="<spring:url value="/statutCourse"/>"><img src="<spring:url value="/PNG/PAYER.png"/>" width="35" alt=""/></a></li>
+                <li><a href="<spring:url value="/statutCourse"/>"><img src="<spring:url value="/PNG/PAYER.PNG"/>" width="35" alt=""/></a></li>
             </c:if>
             <li>Bonjour ${connecte.login}</li>
         </c:otherwise>

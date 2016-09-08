@@ -32,25 +32,34 @@
                             <td style="text-align: center">${personne.adresse}</td>
                             <td style="text-align: center">${personne.mail}</td>
                             <td style="text-align: center">${personne.noteGlobale}</td>
+                            <td style="text-align: center"><a href="<spring:url value="/modif_infoPerso/${personne.idPersonne}"/>">Modifier information personnelle</a></td>
                         </tr>
                     </tbody>
+                    </table>
+                    <table>
                     <thead>
-                        <th width="150" style="text-align: center">Courses</th>
+                        <th width="250" style="text-align: center">Courses</th>
+                        <th width="250" style="text-align: center">Statut course</th>
                         <c:if test="${connecte.rolePersonne=='CHAUFFEUR'}">
-                            <th width="150" style="text-align: center">Marque véhicule</th>
-                            <th width="150" style="text-align: center">Modèle véhicule</th>
+                            <th width="250" style="text-align: center">Marque véhicule</th>
+                            <th width="250" style="text-align: center">Modèle véhicule</th>
                         </c:if>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td style="text-align: center">
-                                <c:forEach items="${courses}" var="course">
-                                    <li><a href="detail_course/${course.idCourse}">${course.dateCourse}</a></li>
-                                </c:forEach></td>
+                        <tbody>
+                            <tr>
+                            <c:forEach items="${courses}" var="coursePers"><tr>
+                                    <td style="text-align: center"><a href="<spring:url value="/detail_course/${coursePers.idCourse}"/>">${coursePers.dateCourse}</a></td>
+                                    <td style="text-align: center">${coursePers.etatCourse}</td>
+                                </c:forEach></tr>
+                            <tr><c:if test="${course.etatCourse == 'IMPAYE'}">
+                                <td style="text-align: center">${course.dateCourse}</td>
+                                <td style="text-align: center">${coursePers.etatCourse}</td>
+                                <td style="text-align: center"><a href="<spring:url value="/statutCourse"/>">Payer</a></td>
+                            </c:if></tr>
                             <c:if test="${connecte.rolePersonne=='CHAUFFEUR'}">
                                 <td style="text-align: center">${personne.vehicule.marque}</td>
                                 <td style="text-align: center">${personne.vehicule.modele}</td>
-                                <td style="text-align: center"><a href="detail_vehicule/${personne.vehicule.idVehicule}">Fiche technique véhicule</a></td>
+                                <td style="text-align: center"><a href="<spring:url value="/detail_vehicule/${personne.vehicule.idVehicule}"/>">Fiche technique véhicule</a></td>
                             </c:if>
                         </tr>
                     </tbody>

@@ -1,5 +1,6 @@
 package jemacarse.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 import jemacarse.entity.Course;
@@ -78,6 +79,11 @@ public class PersonneController {
         Personne p = (Personne)session.getAttribute("connecte");
         List<Course> c = p.getCourses();
         
+        for (Course test : c){
+            
+            System.out.println("***************************************************************** " + test.getAdresseDepartClient());
+        }
+        
         m.addAttribute("personne", p);
         m.addAttribute("courses", c);
         
@@ -109,5 +115,31 @@ public class PersonneController {
         m.addAttribute("vehicule", p.getVehicule());
         
         return "detail_chauffeur";
+    }
+    
+    @RequestMapping(value = "/modif_infoPerso/{idPersonne}", method = RequestMethod.GET) //--------------------------------------------------------- Accueil
+    public String modifPersoGET (Model m, @PathVariable long idPersonne) {
+        
+        Personne p = personneCrudService.findOne(idPersonne);
+        m.addAttribute("modifPerso", p);
+        
+        return "modif_infoPerso";
+    }
+    
+    @RequestMapping(value = "/modif_infoPerso/{idPersonne}", method = RequestMethod.POST) //------------------------------------------------- Inscription
+    public String modifPersoPOST(@ModelAttribute("modifPerso") Personne persNEW, HttpSession session) {
+
+        Personne persOLD = (Personne)session.getAttribute("connecte");
+        
+        if (persNEW.getMotDePasse().equals(persNEW.getMotDePasse2())){
+            persOLD.setMotDePasse(persNEW.getMotDePasse());
+            persOLD.setMotDePasse2(persNEW.getMotDePasse2());
+            persOLD.setAdresse(persNEW.getAdresse());
+            persOLD.setMail(persNEW.getMail());
+            
+            personneCrudService.save(persOLD);
+            session.setAttribute("connecte", persOLD);}
+        
+        return "redirect:/accueil";
     }
 }

@@ -14,7 +14,7 @@
         <div class="titre">
             <c:import url="_TITRE.jsp"/>
         </div>
-        <div class="contenu">
+        <div class="global">
             <div class="inscription">
                 <h1>Inscription</h1>
                 <form:form modelAttribute="inscription" action="inscription">

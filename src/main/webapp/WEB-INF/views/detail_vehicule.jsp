@@ -34,7 +34,7 @@
                             <td style="text-align: center">${vehicule.typeVehicule}</td>
                             <td style="text-align: center">${vehicule.nbPlaces}</td>
                             <td style="text-align: center">${vehicule.prixParKm}</td>
-                            <td style="text-align: center"><a href="../ajouter_vehicule/${vehicule.idVehicule}">Modifier véhicule</a></td>
+                            <td style="text-align: center"><a href="<spring:url value="/ajouter_vehicule/${vehicule.idVehicule}"/>">Modifier véhicule</a></td>
                         </tr>
                     </tbody>
                 </table>

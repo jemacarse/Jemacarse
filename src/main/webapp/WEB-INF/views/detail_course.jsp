@@ -36,14 +36,14 @@
                         <tr>
                             <td style="text-align: center">${course.dateCourse}</td>
                             <c:if test="${connecte.rolePersonne=='CLIENT'}">
-                                <td style="text-align: center"><a href="../detail_chauffeur/${chauffeur.idPersonne}">${chauffeur.login}</a></td>
+                                <td style="text-align: center"><a href="<spring:url value="/detail_chauffeur/${chauffeur.idPersonne}"/>">${chauffeur.login}</a></td>
                                 <td style="text-align: center">${course.commentaireChauffeur}</td>
                                 <td style="text-align: center">${course.commentaireClient}</td>
                                 <td style="text-align: center">${course.noteChauffeur}</td>
                                 <td style="text-align: center">${course.noteClient}</td>
                             </c:if>
                             <c:if test="${connecte.rolePersonne=='CHAUFFEUR'}">
-                                <td style="text-align: center"><a href="../detail_client/${client.idPersonne}">${client.login}</a></td>
+                                <td style="text-align: center"><a href="<spring:url value="/detail_client/${client.idPersonne}"/>">${client.login}</a></td>
                                 <td style="text-align: center">${course.commentaireClient}</td>
                                 <td style="text-align: center">${course.commentaireChauffeur}</td>
                                 <td style="text-align: center">${course.noteClient}</td>
